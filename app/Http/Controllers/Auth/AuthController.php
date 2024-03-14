@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Models\UserLog;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -39,16 +42,37 @@ class AuthController extends Controller
      *     )
      *  )
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
+        $email = '';
+        if (strpos($request->email, "@") !== false) {
+            $email = $request->email;
+        } else {
+            $email = $request->email . '@gmail.com';
+        }
+        $user = User::where('email', $email)->where('is_active', 'Y')->first();
+        if (!empty($user)) {
+            if (!Hash::check($request->password, $user->password)) {
+                return response()->json(['message' => 'Password does not match.'], 401);
+            }
+        } else {
+            return response()->json(['message' => 'User does not exist.'], 401);
+        }
         $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
+            'email' => $email,
+            'password' => $request->password,
+            'is_active' => 'Y'
         ];
+
         $token = Auth::attempt($credentials);
         if (!$token) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Unauthorized User'], 401);
         } else {
+
+            // insert user log
+            if (!UserLog::create(['user_id' => Auth::user()->id])) {
+                return response()->json(['message' => 'Could not login user.'], 403);
+            }
             $userType = Auth::user()->user_type;
             if ($userType !== 'admin') {
                 $employee = User::from("users as u")

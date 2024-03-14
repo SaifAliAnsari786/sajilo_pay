@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $adminArray = [
-            'email' => 'admin@admin.com',
+            'email' => 'admin@gmail.com',
             'password' => \Hash::make('password'),
             'created_at' => \Carbon\Carbon::now()
         ];

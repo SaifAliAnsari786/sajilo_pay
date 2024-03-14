@@ -94,6 +94,1182 @@
                     }
                 ]
             }
+        },
+        "/api/department/store": {
+            "post": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Store department",
+                "operationId": "debd957293f4df5d9ba8bc9814e62f72",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "IT"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully department saved."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/department/show": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "List departments",
+                "operationId": "8fa0ab1796e1905f47ffcd70de4e4308",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "numeric",
+                                                        "example": "24"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "IT"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/department/edit/{id}": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Edit department detail",
+                "operationId": "f014365753fec809fc57f333022073b0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the department",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "25"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get department detail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "numeric",
+                                                    "example": "25"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Finance"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/department/update": {
+            "post": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Update department",
+                "operationId": "140a47513fc21ae621a8c8ac5f05cfc2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "numeric",
+                                        "example": "25"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "IT"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully department updated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/department/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Delete department",
+                "operationId": "0b76dc422cd66b0ff57d295ccdef0cfd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the Department",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "25"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully department deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/late/store": {
+            "post": {
+                "tags": [
+                    "Employee Late Request"
+                ],
+                "summary": "Store employee late request",
+                "operationId": "d0d0a4561c3592bea0a1dd5001951b96",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "arrival_time",
+                                    "date",
+                                    "reason"
+                                ],
+                                "properties": {
+                                    "arrival_time": {
+                                        "type": "string",
+                                        "example": "12:35 PM"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2024-01-01"
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Weeding Party"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully late request saved."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/late/show": {
+            "get": {
+                "tags": [
+                    "Employee Late Request"
+                ],
+                "summary": "List employee late request",
+                "operationId": "5e7610189e374c022aaa1603ce076ad3",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "numeric",
+                                                        "example": "1"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "string",
+                                                        "example": "4"
+                                                    },
+                                                    "arrival_time": {
+                                                        "type": "string",
+                                                        "example": "10:20 AM"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "2024-03-03"
+                                                    },
+                                                    "reason": {
+                                                        "type": "string",
+                                                        "example": "Weeding Party"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2024-03-14T11:03:57.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2024-03-14T11:03:57.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/leave/store": {
+            "post": {
+                "tags": [
+                    "Employee Leave Request"
+                ],
+                "summary": "Store employee leave request",
+                "operationId": "aad4d518052a88994b6f8349d0c82ed5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "leave_type_id",
+                                    "from_date",
+                                    "to_date",
+                                    "reason"
+                                ],
+                                "properties": {
+                                    "leave_type_id": {
+                                        "type": "numeric",
+                                        "example": "2"
+                                    },
+                                    "from_date": {
+                                        "type": "string",
+                                        "example": "2024-01-01"
+                                    },
+                                    "to_date": {
+                                        "type": "string",
+                                        "example": "2024-01-01"
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Weeding Party"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully leave request saved."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/leave/show": {
+            "get": {
+                "tags": [
+                    "Employee Leave Request"
+                ],
+                "summary": "List employee leave request",
+                "operationId": "57dfbbf63c60c3895bb99209591b4034",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "sno": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "leave_type": {
+                                                        "type": "string",
+                                                        "example": "Annual"
+                                                    },
+                                                    "from_date": {
+                                                        "type": "string",
+                                                        "example": "2024-03-03"
+                                                    },
+                                                    "to_date": {
+                                                        "type": "string",
+                                                        "example": "2024-03-03"
+                                                    },
+                                                    "total_days": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "reason": {
+                                                        "type": "string",
+                                                        "example": "Weeding Party"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Pending"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/store": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Store user",
+                "operationId": "efad1bddb09c97653ade562ab1dfb950",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "middle_name",
+                                    "last_name",
+                                    "dob",
+                                    "joining_date",
+                                    "permanent_province",
+                                    "permanent_district",
+                                    "permanent_municipality",
+                                    "permanent_tole",
+                                    "current_province",
+                                    "current_district",
+                                    "current_municipality",
+                                    "current_tole",
+                                    "department_id",
+                                    "position_id",
+                                    "role_id",
+                                    "email",
+                                    "staff_id",
+                                    "mobile_number_1",
+                                    "mobile_number_2",
+                                    "profile_image",
+                                    "citizenship_front",
+                                    "citizenship_back"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "John"
+                                    },
+                                    "middle_name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": ""
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Cena"
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2080/01/09"
+                                    },
+                                    "joining_date": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2080/01/09"
+                                    },
+                                    "permanent_province": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "permanent_district": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2"
+                                    },
+                                    "permanent_municipality": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "7"
+                                    },
+                                    "permanent_tole": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Laligurans"
+                                    },
+                                    "current_province": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2"
+                                    },
+                                    "current_district": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "4"
+                                    },
+                                    "current_municipality": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "7"
+                                    },
+                                    "current_tole": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Ganesthan"
+                                    },
+                                    "department_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2"
+                                    },
+                                    "position_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "4"
+                                    },
+                                    "role_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "2"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "john@gmail.com"
+                                    },
+                                    "staff_id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "5"
+                                    },
+                                    "mobile_number_1": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "9829345674"
+                                    },
+                                    "mobile_number_2": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "9829345674"
+                                    },
+                                    "profile_image": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "profile.jpg"
+                                    },
+                                    "citizenship_front": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "citizenship_front.jpg"
+                                    },
+                                    "citizenship_back": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "citizenship_back.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully user saved."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/show": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List all users",
+                "operationId": "5b2f8d2790414ef59a6903edac64a1da",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "sno": {
+                                                        "type": "numeric",
+                                                        "example": "1"
+                                                    },
+                                                    "id": {
+                                                        "type": "numeric",
+                                                        "example": "4"
+                                                    },
+                                                    "full_name": {
+                                                        "type": "string",
+                                                        "example": "John Cena"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "john@gmail.com"
+                                                    },
+                                                    "is_active": {
+                                                        "type": "string",
+                                                        "example": "Y"
+                                                    },
+                                                    "dob": {
+                                                        "type": "string",
+                                                        "example": "2080/01/02"
+                                                    },
+                                                    "staff_id": {
+                                                        "type": "string",
+                                                        "example": "234"
+                                                    },
+                                                    "joining_date": {
+                                                        "type": "string",
+                                                        "example": "2080/01/02"
+                                                    },
+                                                    "profile_image": {
+                                                        "type": "string",
+                                                        "example": "profile.jpg"
+                                                    },
+                                                    "primary_mobile_number": {
+                                                        "type": "string",
+                                                        "example": "9823453464"
+                                                    },
+                                                    "department_name": {
+                                                        "type": "string",
+                                                        "example": "IT"
+                                                    },
+                                                    "role_name": {
+                                                        "type": "string",
+                                                        "example": "Employee"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/edit/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Edit user detail",
+                "operationId": "72e2cccf3df26d71578f0484dc63f362",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "25"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edit user detail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "numeric",
+                                                    "example": "25"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@gmail.com"
+                                                },
+                                                "first_name": {
+                                                    "type": "string",
+                                                    "example": "John"
+                                                },
+                                                "middle_name": {
+                                                    "type": "string",
+                                                    "example": ""
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "Cena"
+                                                },
+                                                "dob": {
+                                                    "type": "string",
+                                                    "example": "2080/01/09"
+                                                },
+                                                "joining_date": {
+                                                    "type": "string",
+                                                    "example": "2080/01/09"
+                                                },
+                                                "staff_id": {
+                                                    "type": "string",
+                                                    "example": "34"
+                                                },
+                                                "mobile_number_1": {
+                                                    "type": "string",
+                                                    "example": "9823453456"
+                                                },
+                                                "mobile_number_2": {
+                                                    "type": "string",
+                                                    "example": "9823453456"
+                                                },
+                                                "permanent_province": {
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "permanent_district": {
+                                                    "type": "string",
+                                                    "example": "2"
+                                                },
+                                                "permanent_municipality": {
+                                                    "type": "string",
+                                                    "example": "5"
+                                                },
+                                                "permanent_tole": {
+                                                    "type": "string",
+                                                    "example": "Laligurans"
+                                                },
+                                                "current_province": {
+                                                    "type": "string",
+                                                    "example": "4"
+                                                },
+                                                "current_district": {
+                                                    "type": "string",
+                                                    "example": "2"
+                                                },
+                                                "current_municipality": {
+                                                    "type": "string",
+                                                    "example": "7"
+                                                },
+                                                "current_tole": {
+                                                    "type": "string",
+                                                    "example": "Kathmandu"
+                                                },
+                                                "department_id": {
+                                                    "type": "string",
+                                                    "example": "7"
+                                                },
+                                                "position_id": {
+                                                    "type": "string",
+                                                    "example": "3"
+                                                },
+                                                "profile_image": {
+                                                    "type": "string",
+                                                    "example": "profile.jpg"
+                                                },
+                                                "citizenship_front": {
+                                                    "type": "string",
+                                                    "example": "citizenship_front.jpg"
+                                                },
+                                                "citizenship_back": {
+                                                    "type": "string",
+                                                    "example": "citizenship_back.jpg"
+                                                },
+                                                "role_id": {
+                                                    "type": "string",
+                                                    "example": "4"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/update": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user",
+                "operationId": "46d4b4856e6c94907f9192207b4c8121",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "first_name",
+                                    "middle_name",
+                                    "last_name",
+                                    "dob",
+                                    "joining_date",
+                                    "permanent_province",
+                                    "permanent_district",
+                                    "permanent_municipality",
+                                    "permanent_tole",
+                                    "current_province",
+                                    "current_district",
+                                    "current_municipality",
+                                    "current_tole",
+                                    "department_id",
+                                    "position_id",
+                                    "role_id",
+                                    "email",
+                                    "staff_id",
+                                    "mobile_number_1",
+                                    "mobile_number_2",
+                                    "profile_image",
+                                    "citizenship_front",
+                                    "citizenship_back"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "numeric",
+                                        "example": "3"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "middle_name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Cena"
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "example": "2080/01/09"
+                                    },
+                                    "joining_date": {
+                                        "type": "string",
+                                        "example": "2080/01/09"
+                                    },
+                                    "permanent_province": {
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "permanent_district": {
+                                        "type": "string",
+                                        "example": "2"
+                                    },
+                                    "permanent_municipality": {
+                                        "type": "string",
+                                        "example": "7"
+                                    },
+                                    "permanent_tole": {
+                                        "type": "string",
+                                        "example": "Laligurans"
+                                    },
+                                    "current_province": {
+                                        "type": "string",
+                                        "example": "2"
+                                    },
+                                    "current_district": {
+                                        "type": "string",
+                                        "example": "4"
+                                    },
+                                    "current_municipality": {
+                                        "type": "string",
+                                        "example": "7"
+                                    },
+                                    "current_tole": {
+                                        "type": "string",
+                                        "example": "Ganesthan"
+                                    },
+                                    "department_id": {
+                                        "type": "string",
+                                        "example": "2"
+                                    },
+                                    "position_id": {
+                                        "type": "string",
+                                        "example": "4"
+                                    },
+                                    "role_id": {
+                                        "type": "string",
+                                        "example": "2"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john@gmail.com"
+                                    },
+                                    "staff_id": {
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "mobile_number_1": {
+                                        "type": "string",
+                                        "example": "9829345674"
+                                    },
+                                    "mobile_number_2": {
+                                        "type": "string",
+                                        "example": "9829345674"
+                                    },
+                                    "profile_image": {
+                                        "type": "string",
+                                        "example": "profile.jpg"
+                                    },
+                                    "citizenship_front": {
+                                        "type": "string",
+                                        "example": "citizenship_front.jpg"
+                                    },
+                                    "citizenship_back": {
+                                        "type": "string",
+                                        "example": "citizenship_back.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully user saved."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete user",
+                "operationId": "3933578fb342e084f66164fe0c222608",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": "25"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully user deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/change": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Change active status",
+                "operationId": "b975a2c1777bad1672b1c1f898f3cc06",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "numeric",
+                                        "example": "1"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Y"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully user status changed."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {

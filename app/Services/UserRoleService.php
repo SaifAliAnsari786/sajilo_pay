@@ -9,17 +9,13 @@ class UserRoleService
     public function storeData($userId)
     {
         try {
-            $userRoleArray = [];
-            foreach (\request()->role_id as $row) {
-                $userRoleArray[] = [
-                    'user_id' => $userId,
-                    'role_id' => $row,
-                    'created_at' => \Carbon\Carbon::now()
-                ];
-            }
-            if (!UserRole::insert($userRoleArray)) {
+            $userRole = new UserRole();
+            $userRole->user_id = $userId;
+            $userRole->role_id = \request()->role_id;
+            if (!$userRole->save()) {
                 throw new Exception('Could not save user.', 1);
             }
+            return true;
         } catch (\Exception $e) {
             throw $e;
         }
@@ -27,7 +23,16 @@ class UserRoleService
 
     public function updateData()
     {
-        //
+        try {
+            $userRole = UserRole::where('user_id', \request()->id)->first();
+            $userRole->role_id = \request()->role_id;
+            if (!$userRole->save()) {
+                throw new Exception('Could not save user.', 1);
+            }
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
 }

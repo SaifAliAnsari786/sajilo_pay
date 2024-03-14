@@ -31,13 +31,12 @@ class JwtDecryptMiddleware
                 if (!$user) {
                     return response()->json(['error' => 'User not found.'], 404);
                 }
-                $roleId = $user->userrole->role_id;
+                $roleId = $user->userrole[0]->role_id;
             }
 
             // Set the values in the request headers
             $request->headers->set('userid', $userId);
             $request->headers->set('roleid', $roleId);
-
             return $next($request);
         } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
             return response()->json(['error' => 'Invalid API token.'], 401);

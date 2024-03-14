@@ -19,8 +19,8 @@ class FileUploadService
 
             // Return the file path for future use (e.g., storing in the database)
             return $fileName;
-        } catch (Exception $e) {
-            return $e;
+        } catch (\Throwable $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 }

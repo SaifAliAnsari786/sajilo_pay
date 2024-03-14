@@ -16,8 +16,8 @@ class DepartmentService
                 return false;
             }
             return true;
-        } catch (Exception $e) {
-            throw $e->getMessage();
+        } catch (\Throwable $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 
@@ -29,8 +29,8 @@ class DepartmentService
                 return false;
             }
             return true;
-        } catch (Exception $e) {
-            throw $e->getMessage();
+        } catch (\Throwable $e) {
+            throw new \Exception($e->getMessage());
         }
     }
 }

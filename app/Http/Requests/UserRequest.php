@@ -29,23 +29,26 @@ class UserRequest extends FormRequest
             'current_district' => 'nullable|max:255',
             'current_municipality' => 'nullable|max:255',
             'current_tole' => 'nullable|max:255',
-            'profile_image' => 'required|file|mimes:jpg,jpeg,png',
-            'citizenship_front' => 'required|file|mimes:jpg,jpeg,png',
-            'citizenship_back' => 'required|file|mimes:jpg,jpeg,png',
             'department_id' => 'required|max:255',
             'position_id' => 'required|max:255',
             'role_id' => 'required'
         ];
-        if (!empty(\request()->userid) && (!empty(\request()->profileid))) {
-            $rule['email'] = 'required|email|max:255|unique:users,email,'.\request()->userid;
-            $rule['staff_id'] = 'required|numeric|max_digits:10|unique:profiles,staff_id,'.\request()->profileid;
-            $rule['mobile_number_1'] = 'required|numeric|max_digits:10|unique:profiles,mobile_number_1,'.\request()->profileid;
-            $rule['mobile_number_2'] = 'nullable|numeric|max_digits:10|unique:profiles,mobile_number_2,'.\request()->profileid;
+        if (!empty(\request()->id)) {
+            $rule['email'] = 'required|email|max:255|unique:users,email,'.\request()->id;
+            $rule['staff_id'] = 'required|numeric|max_digits:10|unique:profiles,staff_id,'.\request()->id.',user_id';
+            $rule['mobile_number_1'] = 'required|numeric|max_digits:10|unique:profiles,mobile_number_1,'.\request()->id.',user_id';
+            $rule['mobile_number_2'] = 'nullable|numeric|max_digits:10|unique:profiles,mobile_number_2,'.\request()->id.',user_id';
+            $rule['profile_image'] = 'nullable|file|mimes:jpg,jpeg,png';
+            $rule['citizenship_front'] = 'nullable|file|mimes:jpg,jpeg,png';
+            $rule['citizenship_back'] = 'nullable|file|mimes:jpg,jpeg,png';
         } else {
             $rule['email'] = 'required|email|max:255|unique:users,email';
             $rule['staff_id'] = 'required|numeric|max_digits:10|unique:profiles,staff_id';
             $rule['mobile_number_1'] = 'required|numeric|max_digits:10|unique:profiles,mobile_number_1';
             $rule['mobile_number_2'] = 'nullable|numeric|max_digits:10|unique:profiles,mobile_number_2';
+            $rule['profile_image'] = 'required|file|mimes:jpg,jpeg,png';
+            $rule['citizenship_front'] = 'required|file|mimes:jpg,jpeg,png';
+            $rule['citizenship_back'] = 'required|file|mimes:jpg,jpeg,png';
         }
         return $rule;
     }
