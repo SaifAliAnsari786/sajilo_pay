@@ -43,7 +43,7 @@ class PositionController extends Controller
      */
     public function store(PositionRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         try {
             $isInserted = $this->positionService->storeData();
             if (!$isInserted) {
@@ -72,24 +72,49 @@ class PositionController extends Controller
             return response()->json([
                 'message' => 'Internale serve error',
                 ''
-            ],5000);
+            ],500);
     }
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Position $position)
+    public function edit( $id)
     {
-        //
+        try{
+            $position = Position::findOrFail($id);
+            return response()->json($position ,200);
+
+        }catch(Exception $e){
+            return response()->josn([
+                'message' => 'Internal serve error.'
+            ],500);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Position $position)
+    public function update(PositionRequest $request)
     {
-        //
+        // dd($request->all());
+        try{
+            $position = Position::findOrFail($request->id);
+            $isUpdated = $this->positionService->updateData($position);
+            if(!$isUpdated) {
+                return response()->json([
+                    'message' => 'Cound not update position.'
+                ],400);
+            }
+            return response()->json([
+                'message' => 'Successfull position update'
+            ],200);
+
+        }catch (Exception $e){
+          return response()->json([
+            'message' => 'Internal server error.',
+          ],500);
+        }
     }
 
     /**

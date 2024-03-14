@@ -15,16 +15,16 @@ class PositionRequest extends FormRequest
 
     public function rules(): array
     {
-        dd(97);
+        // dd(97);
 
         if (!empty(\request()->id)) {
             $rule['name'] = [
                 'required',
                 'max:255',
-                'unique:postion,name,'.\request()->id
+                'unique:positions,name,'.\request()->id
             ];
         } else {
-            $rule['name'] = 'required|max:255|unique:postion,name';
+            $rule['name'] = 'required|max:255|unique:positions,name';
         }
         return $rule;
     }
@@ -33,7 +33,7 @@ class PositionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Please enter postion name.',
+            'name.required' => 'Please enter position name.',
             'name.max' => 'postion name must not be more than 255 characters long.',
             'name.unique' => 'postion name already taken.'
         ];
